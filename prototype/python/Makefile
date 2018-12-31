@@ -1,0 +1,2 @@
+all:
+	./dtdate.py
