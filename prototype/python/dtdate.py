@@ -26,11 +26,15 @@ class DTDate:
     def resetInitialTime(self):
         self.initTime = calendar.timegm(time.gmtime())
 
+    def getCurrentTime(self):
+        return calendar.timegm(time.gmtime())
+
 d = DTDate()
 d.loadInitialTime()
 #d.resetInitialTime()
 
-print(d.calculateDaysElapsed())
+# print(d.calculateDaysElapsed())
+print(d.getCurrentTime())
 
     
 #initTime = 1546022333
