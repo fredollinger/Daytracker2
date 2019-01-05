@@ -14,7 +14,7 @@ public class DTDate {
 
     public DTDate() {
         now = Calendar.getInstance();
-	loadInitialTime();
+        loadInitialTime();
     }
 
     // TODO: Actually load a time STUB for testing
@@ -23,8 +23,8 @@ public class DTDate {
     }
 
     public long getCurrentTimeSeconds() {
-         Date currentDate = new Date();
-       	 return currentDate.getTime() / 1000;
+        Date currentDate = new Date();
+        return currentDate.getTime() / 1000;
     }
 
     public long calculateElapsedDays() {
@@ -32,7 +32,7 @@ public class DTDate {
     }
 
     public static void main(String[] args) {
-	DTDate d = new DTDate();
+        DTDate d = new DTDate();
         System.out.println(d.calculateElapsedDays());
     }
 
