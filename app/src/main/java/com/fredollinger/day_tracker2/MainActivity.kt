@@ -10,8 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val d = DTDate()
-        var t = d.getCurrentTimeSeconds()
-        textView.setText("hi")
+        textView.setText("Days Elapsed: " + d.daysElapsedString())
         //tvMain.setText("Days Elapsed")
         // var button = (TextView) findViewById(R.id.textView);
     }

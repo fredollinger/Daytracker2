@@ -35,4 +35,9 @@ public class DTDate {
         System.out.println(d.calculateElapsedDays());
     }
 
+    public String daysElapsedString() {
+        long days = calculateElapsedDays();
+        return Long.toString(days);
+    }
+
 }
