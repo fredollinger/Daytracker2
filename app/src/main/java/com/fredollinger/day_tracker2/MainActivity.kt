@@ -5,6 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,5 +22,8 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return true
+    }
 
 }
