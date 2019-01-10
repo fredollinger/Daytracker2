@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Handle presses on the action bar menu items
         when (item.itemId) {
             R.id.action_about -> {
-                textView.setText("about pressed")
+                textView.setText("Day Tracker \n (C) 2019 \n Frederick Olllinger")
             }
 
         }

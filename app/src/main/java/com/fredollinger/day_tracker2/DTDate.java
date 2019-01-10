@@ -30,14 +30,35 @@ public class DTDate {
         return ((getCurrentTimeSeconds() - initTime) / secondsPerDay);
     }
 
-    public static void main(String[] args) {
-        DTDate d = new DTDate();
-        System.out.println(d.calculateElapsedDays());
-    }
+
 
     public String daysElapsedString() {
         long days = calculateElapsedDays();
         return Long.toString(days);
     }
 
+    public void saveStringToFile(String file, String str) {
+        BufferedWriter out = null;
+        try {
+            FileWriter fstream = new FileWriter(file); //true tells to append data.
+            out = new BufferedWriter(fstream);
+            out.write(str);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        DTDate d = new DTDate();
+        System.out.println(d.calculateElapsedDays());
+        d.saveStringToFile("test", d.daysElapsedString());
+    }
 }
