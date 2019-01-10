@@ -10,6 +10,7 @@ public class DTDate {
     private Calendar now;
     private long secondsPerDay = 60 * 60 * 24;
     private long initTime;
+    private String saveFileName = "day_tracker_initial_time.txt";
 
     public DTDate() {
         now = Calendar.getInstance();
@@ -29,8 +30,6 @@ public class DTDate {
     public long calculateElapsedDays() {
         return ((getCurrentTimeSeconds() - initTime) / secondsPerDay);
     }
-
-
 
     public String daysElapsedString() {
         long days = calculateElapsedDays();
@@ -56,9 +55,14 @@ public class DTDate {
         }
     }
 
+    public void saveCurrentTime() {
+        saveStringToFile(saveFileName, Long.toString(initTime));
+    }
+
     public static void main(String[] args) {
         DTDate d = new DTDate();
         System.out.println(d.calculateElapsedDays());
-        d.saveStringToFile("test", d.daysElapsedString());
+	d.saveCurrentTime();
+        // d.saveStringToFile("test", d.daysElapsedString());
     }
 }

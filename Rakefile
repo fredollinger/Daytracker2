@@ -5,6 +5,8 @@ NAMESPACE="com/fredollinger/day_tracker2"
 DIR="app/src/main/java/com/fredollinger/day_tracker2"
 DESTPATH="#{DIR}/com/fredollinger"
 
+task :default => :test
+
 desc "install it"
 task :install do
     sh "adb install -r #{PKG}"
@@ -16,11 +18,12 @@ task :build do
 end
 
 desc "test it"
-task :test do
+task :test => :build do
 	sh "cd app/src/main/java && java -cp . #{NAMESPACE}/DTDate"
 end
 
 desc "clean it"
 task :clean do
+	sh "rm -f app/src/main/java/day_tracker_initial_time.txt"
 	sh "cd #{DIR} && rm -rvf DTDate.class test"
 end
