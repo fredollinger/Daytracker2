@@ -98,10 +98,16 @@ public class DTDate {
         saveStringToFile(saveFileName, Long.toString(initTime));
     }
 
+    public void resetInitialTime() {
+        initTime = getCurrentTimeSeconds();
+	saveCurrentTime();
+    }
+
     public static void main(String[] args) {
         DTDate d = new DTDate();
         System.out.println(d.calculateElapsedDays());
         d.saveCurrentTime();
         // d.saveStringToFile("test", d.daysElapsedString());
     }
+
 }

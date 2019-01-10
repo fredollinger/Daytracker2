@@ -28,7 +28,11 @@ class MainActivity : AppCompatActivity() {
             R.id.action_about -> {
                 textView.setText("Day Tracker \n (C) 2019 \n Frederick Olllinger")
             }
-
+            R.id.action_reset_time -> {
+                val d = DTDate()
+                d.resetInitialTime()
+                textView.setText("Days Elapsed: " + d.daysElapsedString())
+            }
         }
         return true
     }
