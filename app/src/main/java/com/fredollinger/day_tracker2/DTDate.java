@@ -13,6 +13,7 @@ public class DTDate {
     private long secondsPerDay = 60 * 60 * 24;
     private long initTime;
     private String saveFileName = "day_tracker_initial_time.txt";
+    private boolean loadFileSuccess = false;
 
     public DTDate() {
         now = Calendar.getInstance();
@@ -24,6 +25,7 @@ public class DTDate {
         if(f.exists() && !f.isDirectory()) {
             System.out.println("file exists");
             initTime = readInitTimeFromFile();
+	    loadFileSuccess = true;
         }
         else {
             initTime = getCurrentTimeSeconds();
@@ -121,7 +123,13 @@ public class DTDate {
         dbs = dbs + "MS Elapsed: [" + MSElapsedString() + "] \n";
         dbs = dbs + "Seconds Elapsed: [" + secondsElapsedString() + "] \n";
         dbs = dbs + "Days Elapsed: [" + daysElapsedString() + "] \n";
-	return dbs;
+	if (true == loadFileSuccess) {
+            dbs = dbs + "File found";
+	}
+	else {
+            dbs = dbs + "FAIL: File NOT found";
+	}
+        return dbs;
     }
 
     public static void main(String[] args) {
