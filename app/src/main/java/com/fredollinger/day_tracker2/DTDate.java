@@ -20,15 +20,16 @@ public class DTDate {
     }
 
     public void loadInitialTime() {
-	File f = new File(saveFileName);
-	if(f.exists() && !f.isDirectory()) { 
-	    System.out.println("dir exists");
+        File f = new File(saveFileName);
+        if(f.exists() && !f.isDirectory()) {
+            System.out.println("file exists");
             initTime = readInitTimeFromFile();
         }
-	else {
+        else {
             initTime = getCurrentTimeSeconds();
-	    System.out.println("dir does not exist");
-	}
+            System.out.println("saving new filename");
+	    saveCurrentTime();
+        }
     }
 
     public long getCurrentTimeSeconds() {
@@ -36,8 +37,19 @@ public class DTDate {
         return currentDate.getTime() / 1000;
     }
 
+    public String getCurrentTimeSecondsString() {
+        return Long.toString(getCurrentTimeSeconds());
+    }
+
     public long calculateElapsedDays() {
         return ((getCurrentTimeSeconds() - initTime) / secondsPerDay);
+    }
+
+    public String MSElapsedString() {
+        System.out.println("MS Elapsed");
+        long t = getCurrentTimeSeconds() - initTime;
+        System.out.println(t);
+        return Long.toString(t);
     }
 
     public String daysElapsedString() {
@@ -45,21 +57,21 @@ public class DTDate {
         return Long.toString(days);
     }
 
-    // If the file is corrupt, return current time,
-    // and save it to a file.
-    //
-    // Otherwise, read the last time saved from a file
+    public String secondsElapsedString() {
+        return Long.toString(getCurrentTimeSeconds() - initTime);
+    }
+
     public long readInitTimeFromFile() {
         BufferedReader reader = null;
         long lInitTime = getCurrentTimeSeconds();
 
-	try {
+        try {
             reader = new BufferedReader(new FileReader(saveFileName));
             String line = null;
             if ((line = reader.readLine()) != null) {
                 lInitTime = Long.parseLong(line);
             }
-	} catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -71,7 +83,7 @@ public class DTDate {
             }
         }
 
-        saveStringToFile(saveFileName, Long.toString(lInitTime));
+        // saveStringToFile(saveFileName, Long.toString(lInitTime));
         return lInitTime;
     }
 
@@ -100,13 +112,23 @@ public class DTDate {
 
     public void resetInitialTime() {
         initTime = getCurrentTimeSeconds();
-	saveCurrentTime();
+        saveCurrentTime();
+    }
+
+    public String getDebugString() {
+        String dbs = "Saved Time: [" + Long.toString(initTime) + "] \n";
+        dbs = dbs + "Current Time: [" + getCurrentTimeSecondsString() + "] \n";
+        dbs = dbs + "MS Elapsed: [" + MSElapsedString() + "] \n";
+        dbs = dbs + "Seconds Elapsed: [" + secondsElapsedString() + "] \n";
+        dbs = dbs + "Days Elapsed: [" + daysElapsedString() + "] \n";
+	return dbs;
     }
 
     public static void main(String[] args) {
         DTDate d = new DTDate();
-        System.out.println(d.calculateElapsedDays());
-        d.saveCurrentTime();
+        System.out.println(d.getDebugString());
+        //System.out.println(d.secondsElapsedString());
+        // d.saveCurrentTime();
         // d.saveStringToFile("test", d.daysElapsedString());
     }
 

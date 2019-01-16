@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val d = DTDate()
-        textView.setText("Days Elapsed: " + d.daysElapsedString())
+        // textView.setText("Days Elapsed: " + d.daysElapsedString())
+        //textView.setText("Days Elapsed: " + d.getCurrentTimeSecondsString())
+        textView.setText("Days Elapsed: " + d.MSElapsedString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
